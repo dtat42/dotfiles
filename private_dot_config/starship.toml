@@ -1,0 +1,24 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+success_symbol = "[▶](bold green)" # normal prompt
+error_symbol = "[✗](bold red)" # used if previous command failed
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = false
+
+[directory]
+truncate_to_repo = true
+truncation_length = 5
+truncation_symbol = "…"
+
+[custom.shellname]
+command = 'echo \($STARSHIP_SHELL\)'
+when = true
+
