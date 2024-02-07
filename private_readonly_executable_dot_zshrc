@@ -41,9 +41,7 @@ alias gits='git status'
 alias gitpp='git pull --rebase && git push && git push --tags'
 alias gacp='git add -u; git commit; git push'
 alias gri='git rebase -i'
-function gmr() {
-	git checkout $1 && git pull && git checkout $2 && git pull && git merge $1 && git push
-}
+function gmr() { git checkout $1 && git pull && git checkout $2 && git pull && git merge $1 && git push }
 
 # Docker
 
