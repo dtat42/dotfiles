@@ -1,0 +1,46 @@
+[alias]
+	ai = add -i
+	au = add -u
+	d = diff
+	l = log
+	s = status
+	cm = commit -m
+	pp = "!git pull --rebase; git push; git push --tags"
+	ri = rebase --interactive
+	ri2 = "!git rebase --interactive HEAD~2"
+	aws = "!security delete-internet-password -l 'git-codecommit.eu-west-1.amazonaws.com' ~/Library/Keychains/login.keychain-db 1> /dev/null || true"
+[core]
+	autocrlf = input
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[user "https://gitlab.scania.com"]
+	name = David Takacs
+	email = david.takacs@scania.com
+[credential "https://gitlab.scania.com"]
+	username = dtat42
+	helper = store
+
+[user "https://github.com"]
+	name = David Takacs
+	email = dtat42@scania.com
+[credential "https://github.com"]
+	username = dtat42
+	helper = store
+
+[credential "https://git-codecommit.eu-west-1.amazonaws.com"]
+	helper = !aws codecommit credential-helper $@
+	UseHttpPath = true
+
+[user]
+	name = David Takacs
+	email = david.takacs@scania.com
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[diff]
+	colorMoved = zebra

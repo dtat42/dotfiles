@@ -1,0 +1,9 @@
+[profile default]
+sso_session = DEV
+sso_role_name = Administrator
+region = eu-west-1
+output = json
+[sso-session DEV]
+sso_start_url = https://scania.awsapps.com/start#/
+sso_region = eu-west-1
+sso_registration_scopes = sso:account:access

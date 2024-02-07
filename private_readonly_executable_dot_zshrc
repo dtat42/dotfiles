@@ -1,0 +1,62 @@
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="/Applications/SnowSQL.app/Contents/MacOS":$PATH
+export PATH=~/.bin:$PATH
+
+export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache
+
+# brew
+export HOMEBREW_PREFIX="/opt/homebrew";
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+export HOMEBREW_REPOSITORY="/opt/homebrew";
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+
+if [ -f ~/.secretrc]; then source ~/.secretrc; fi
+
+#################
+# terminal only #
+#################
+
+export EDITOR=vim
+export VISUAL=vim
+export IGNOREEOF=42
+
+###########
+# aliases #
+###########
+
+# git
+
+function get() { (git clone --recursive $1 && cd $1 && git status) || (cd $1 && git fetch --all && git status) }
+alias dotgit="git --git-dir=$(echo ~)/dotfiles/.git --work-tree=$(echo ~)"
+alias get='git clone --recursive'
+alias gai='git add -i'
+alias gau='git add -u'
+alias gcm='git commit -m'
+alias gitd='git diff'
+alias gitdc='git diff --cached'
+alias gitl='git log'
+alias gits='git status'
+alias gitpp='git pull --rebase && git push && git push --tags'
+alias gacp='git add -u; git commit; git push'
+alias gri='git rebase -i'
+function gmr() {
+	git checkout $1 && git pull && git checkout $2 && git pull && git merge $1 && git push
+}
+
+# Docker
+
+alias dcub='docker-compose up --build'
+alias dcu='docker-compose up'
+alias db='docker build .'
+alias di='docker images'
+alias dp='docker ps -a'
+alias dxx='docker rm $(docker ps --all -q -f status=exited)'
+alias dxc='docker rm $(docker ps --all -q -f status=created)'
+alias dxi='docker images | egrep "^<none>" | cut -c41-52 | xargs docker rmi'
+alias dk='docker kill'
+alias drm='docker rm'
+alias drmi='docker rmi'
+function dme() { x=$(docker-machine env $1); eval $x; echo "Docker machine: $DOCKER_MACHINE_NAME: $DOCKER_HOST"; }
+
